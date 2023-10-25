@@ -1,12 +1,16 @@
 package com.example.logowanie;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,17 +27,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Snackbar Haslo = Snackbar.make(findViewById(R.id.Logowanie), "Podaj hasło", 5);
+                Snackbar Login = Snackbar.make(findViewById(R.id.Logowanie), "Podaj login", 5);
+                Snackbar HiL = Snackbar.make(findViewById(R.id.Logowanie), "Podaj login i hasło", 5);
+                Snackbar Blad = Snackbar.make(findViewById(R.id.Logowanie), "Podane login lub hasło nie są poprawne", 5);
+
                 EditText text = (EditText)findViewById(R.id.NazwaPod);
                 String loginodp = text.getText().toString();
                 EditText text2 = (EditText)findViewById(R.id.HasloPod);
                 String hasloodp = text2.getText().toString();
                 if(loginodp.length()<1 && hasloodp.length()<1)
-                {}
+                {
+                    HiL.show();
+                }
                 else if(loginodp.length()<1)
-                {}
+                {
+                    Login.show();
+                }
                 else if(hasloodp.length()<1)
-                if(loginpr == loginodp && hasloodp==haslopr) {
-
+                {
+                    Haslo.show();
+                }
+                else if(loginpr != loginodp && hasloodp!=haslopr)
+                {
+                    Blad.show();
+                }
+                else if(loginpr == loginodp && hasloodp==haslopr)
+                {
+                    startActivity(new Intent(MainActivity.this, MainActivityZalogowano.class));
                 }
 
             }
