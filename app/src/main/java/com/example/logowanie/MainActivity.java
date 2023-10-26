@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity {
 
     public String loginpr = "Bartosz123";
-    public String haslopr = "Haselko123";
+    public String haslopr = "123";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +27,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Snackbar Haslo = Snackbar.make(findViewById(R.id.Logowanie), "Podaj hasło", 5);
-                Snackbar Login = Snackbar.make(findViewById(R.id.Logowanie), "Podaj login", 5);
-                Snackbar HiL = Snackbar.make(findViewById(R.id.Logowanie), "Podaj login i hasło", 5);
-                Snackbar Blad = Snackbar.make(findViewById(R.id.Logowanie), "Podane login lub hasło nie są poprawne", 5);
+                Snackbar Haslo = Snackbar.make(findViewById(R.id.Logowanie), "Podaj hasło", 10);
+                Snackbar Login = Snackbar.make(findViewById(R.id.Logowanie), "Podaj login", 10);
+                Snackbar HiL = Snackbar.make(findViewById(R.id.Logowanie), "Podaj login i hasło", 10);
+                Snackbar Blad = Snackbar.make(findViewById(R.id.Logowanie), "Podane login lub hasło nie są poprawne", 10);
 
                 EditText text = (EditText)findViewById(R.id.NazwaPod);
                 String loginodp = text.getText().toString();
                 EditText text2 = (EditText)findViewById(R.id.HasloPod);
                 String hasloodp = text2.getText().toString();
+
                 if(loginodp.length()<1 && hasloodp.length()<1)
                 {
                     HiL.show();
@@ -48,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Haslo.show();
                 }
+                else if(loginpr.equals(loginodp) && hasloodp.equals(haslopr))
+                {
+                    startActivity(new Intent(MainActivity.this, MainActivityZalogowano.class));
+                }
                 else if(loginpr != loginodp && hasloodp!=haslopr)
                 {
                     Blad.show();
-                }
-                else if(loginpr == loginodp && hasloodp==haslopr)
-                {
-                    startActivity(new Intent(MainActivity.this, MainActivityZalogowano.class));
                 }
 
             }
